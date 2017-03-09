@@ -1,6 +1,7 @@
 package track.lessons.lesson1;
 
 import java.io.File;
+import java.util.Scanner;
 
 /**
  * Задание 1: Реализовать два метода
@@ -22,7 +23,6 @@ import java.io.File;
  *
  */
 public class CountWords {
-
     /**
      * Метод на вход принимает объект File, изначально сумма = 0
      * Нужно пройти по всем строкам файла, и если в строке стоит целое число,
@@ -31,7 +31,13 @@ public class CountWords {
      * @return - целое число - сумма всех чисел из файла
      */
     public long countNumbers(File file) throws Exception {
-        return 0;
+        Scanner scn = new Scanner (file);
+        int currentNumber = 0;
+        while (scn.hasNext()) {
+            currentNumber = currentNumber + scn.nextInt();
+        }
+        scn.close();
+        return currentNumber;
     }
 
 
@@ -43,7 +49,20 @@ public class CountWords {
      * @return - результирующая строка
      */
     public String concatWords(File file) throws Exception {
-        return null;
+        Scanner scn = new Scanner (file);
+        StringBuilder buildString = new StringBuilder ();
+        String currentString = "";
+        while (scn.hasNext()) {
+            buildString.append(scn.next() + " ");
+        }
+        scn.close();
+        return currentString;
     }
-
+    
+    public static void main (String [] args) throws Exception {
+        File f = new File ("/home/eyakovlev/works/projectsJava/track17-spring/src/main/java/track/lessons/lesson1");
+        CountWords newCW = new CountWords ();
+        System.out.println( newCW.countNumbers(f));
+        System.out.println(newCW.concatWords(f));
+    }
 }
